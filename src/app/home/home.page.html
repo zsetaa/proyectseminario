@@ -1,0 +1,71 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Registro de personas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Registro de personas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-item>
+    <ion-table position="floating">Rut/ key :</ion-table>
+    <ion-input type="text" placeholder=" Ej: 20400300k" #txtRut></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-table position="floating">Nombre :</ion-table>
+    <ion-input type="text" placeholder=" Ej: Daniel Cuellar"#txtNombre></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-table position="floating">Telefono :</ion-table>
+    <ion-input type="text" placeholder=" Ej: 318444865"#txtFono></ion-input>
+  </ion-item>
+
+  <div *ngIf=nombre>
+    <ion-text color="secondary">
+        <h1 clas="ion-text-center">Nombre :</h1>
+        <h2>{{nombre}}</h2>
+    </ion-text>
+    <ion-text color="secondary">
+      <h1 clas="ion-text-center">Fono :</h1>
+      <h2>{{fono}}</h2>
+  </ion-text>
+  <ion-text color="secondary" >
+  <ion-button (click)="eliminar(txtRut)" fill="clear" class="ion-text-center">
+    <ion-icon slot="icon-only" name="trash"></ion-icon>
+  </ion-button>
+</ion-text>
+  </div>
+
+   <div *ngIf="listado.length> 0">
+    <ion-list>
+        <div *ngFor="let item of listado">
+        <ion-item>
+          <ion-label>Nombre: {{item[0].nombre}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Telefono: {{item[0].fono}}</ion-label>
+        </ion-item>
+        <hr>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="agregar(txtRut, txtNombre, txtFono)">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+    <ion-button (click)="buscar(txtRut)">
+      <ion-icon slot="icon-only" name="search"></ion-icon>
+    </ion-button>
+    <ion-button (click)="listar()" slot="end">
+      <ion-icon slot="icon-only" name="list"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
